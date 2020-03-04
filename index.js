@@ -7,8 +7,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', (req, res) => {
-    res.send("GameGuides Api Gatewaynp")
-});
+    res.send("GameGuides Api Gateway")
+})
 
 app.use(router);
 

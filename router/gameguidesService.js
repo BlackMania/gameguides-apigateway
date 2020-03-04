@@ -4,14 +4,17 @@ var requestAuthenticator = require('../controllers/requestAuthenticator')
 
 const apiAdapter = require('./apiAdapter');
 
-const BASE_URL = 'http://localhost:80';
+const BASE_URL = 'http://localhost:8082';
 const api = apiAdapter(BASE_URL);
 
-router.get('/test', requestAuthenticator, (req, res) => {
+router.get('/supportedgames', requestAuthenticator, (req, res) => {
     api.get(req.path).then(resp => {
         res.send(resp.data);
     })
+        .catch(error => {
+            res.send("Something went wrong")
+            console.log(error)
+        })
 });
 
 module.exports = router
-

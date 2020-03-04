@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var lolService = require('./lolService');
+var lolService = require('./lolChampService');
+var gameguidesService = require('./gameguidesService');
 
 router.use((req, res, next) => {
     console.log("Called: ", req.path)
@@ -8,5 +9,6 @@ router.use((req, res, next) => {
 })
 
 router.use(lolService)
+router.use(gameguidesService)
 
 module.exports = router
