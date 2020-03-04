@@ -1,0 +1,10 @@
+{
+  "name": "gameguides-apigateway",
+  "version": "1.0.0",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.3.0"
+  }
+}
