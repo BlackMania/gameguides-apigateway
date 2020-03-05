@@ -5,10 +5,12 @@ var requestAuthenticator = require('../controllers/requestAuthenticator')
 const apiAdapter = require('./apiAdapter');
 
 const BASE_URL = 'http://localhost:8082';
+const PREFIX = "/gg";
 const api = apiAdapter(BASE_URL);
 
-router.get('/supportedgames', requestAuthenticator, (req, res) => {
-    api.get(req.path).then(resp => {
+router.get('/gg/supportedgames', requestAuthenticator, (req, res) => {
+    let adjustedPath = req.path.replace(PREFIX, "");
+    api.get(adjustedPath).then(resp => {
         res.send(resp.data);
     })
         .catch(error => {
