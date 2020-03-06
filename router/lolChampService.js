@@ -15,7 +15,7 @@ router.get('/lol/champion-rotations', requestAuthenticator, (req, res) => {
     })
 .catch(error => {
     res.send("Something went wrong")
-    console.log(error)
+    console.log(error.data)
 })
 });
 

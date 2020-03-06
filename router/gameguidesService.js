@@ -4,7 +4,7 @@ var requestAuthenticator = require('../controllers/requestAuthenticator')
 
 const apiAdapter = require('./apiAdapter');
 
-const BASE_URL = 'http://localhost:8082';
+const BASE_URL = 'http://localhost:8081';
 const PREFIX = "/gg";
 const api = apiAdapter(BASE_URL);
 
