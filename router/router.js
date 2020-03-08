@@ -1,14 +1,19 @@
 var express = require('express');
 var router = express.Router();
-var lolService = require('./lolChampService');
+var lolChampService = require('./leagueoflegends/lolChampService');
+var lolVersionService = require('./leagueoflegends/lolVersionService');
+var lolResourceService = require('./leagueoflegends/lolResourceService');
 var gameguidesService = require('./gameguidesService');
 
 router.use((req, res, next) => {
-    console.log("Called: ", req.path)
+    console.log("Called: ", req.path);
     next()
-})
+});
 
-router.use(lolService)
-router.use(gameguidesService)
+router.use(lolVersionService);
+router.use(lolResourceService);
+router.use(lolChampService);
 
-module.exports = router
+router.use(gameguidesService);
+
+module.exports = router;
