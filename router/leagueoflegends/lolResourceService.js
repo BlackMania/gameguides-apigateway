@@ -1,36 +1,24 @@
 var express = require('express');
 var router = express.Router();
-var requestAuthenticator = require('../../controllers/requestAuthenticator')
-var axios = require('axios');
+var requestAuthenticator = require('../../controllers/requestAuthenticator');
+var request = require('request');
 
-const apiAdapter = require('../apiAdapter');
+const BASE_URL = 'http://ddragon.leagueoflegends.com/cdn/';
 
-const gatewayService = axios.create({
-    baseURL: 'http://localhost:3000',
+const PREFIX = "/lol";
+
+router.get('/lol/img/champion/:name', requestAuthenticator, (req, res) => {
+    let correctedPath = req.path.replace(PREFIX, "");
+    let url = BASE_URL + req.app.locals.leagueApiVersion + correctedPath;
+
+    request(url).pipe(res);
 });
 
-var version = "";
-
-gatewayService.get('/lol/versions')
-        .then(response => {
-            version = response.data[0]
-        });
-
-
-const BASE_URL = 'http://ddragon.leagueoflegends.com/cdn/' +  this.version;
-const PREFIX = "/lol";
-const api = apiAdapter(BASE_URL);
-
-router.get('/lol/test', requestAuthenticator, (req, res) => {
-    console.log(BASE_URL);
-    let correctedPath = req.path.replace(PREFIX, "") + '.json';
-    api.get(correctedPath).then(resp => {
-        res.send(resp.data);
-    })
-        .catch(error => {
-            res.send("Something went wrong")
-            console.log(error.data)
-        })
+router.get('/lol/img/champion/splash/:name', requestAuthenticator, (req, res) => {
+    let correctedPath = req.path.replace(PREFIX + '/', "");
+    let url = BASE_URL + correctedPath;
+    console.log(url);
+    request(url).pipe(res);
 });
 
 module.exports = router
