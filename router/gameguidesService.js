@@ -5,12 +5,20 @@ var requestAuthenticator = require('../controllers/requestAuthenticator')
 const apiAdapter = require('./apiAdapter');
 
 const BASE_URL = 'http://localhost:8081';
-const PREFIX = "/gg";
 const api = apiAdapter(BASE_URL);
 
 router.get('/gg/supportedgames', requestAuthenticator, (req, res) => {
-    let adjustedPath = req.path.replace(PREFIX, "");
-    api.get(adjustedPath).then(resp => {
+    api.get(req.path).then(resp => {
+        res.send(resp.data);
+    })
+        .catch(error => {
+            res.send("Something went wrong")
+            console.log(error)
+        })
+});
+
+router.get('/gg/lol/guides', requestAuthenticator, (req, res) => {
+    api.get(req.path + '?size=10&page=0').then(resp => {
         res.send(resp.data);
     })
         .catch(error => {
