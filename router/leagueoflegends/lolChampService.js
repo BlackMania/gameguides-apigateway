@@ -6,7 +6,7 @@ const apiAdapter = require('../apiAdapter');
 
 const BASE_URL = 'https://euw1.api.riotgames.com/lol/platform/v3';
 const PREFIX = "/lol";
-const api = apiAdapter(BASE_URL, { 'X-Riot-Token': 'RGAPI-99d2d80d-b1b1-44f1-8b17-9f9d7434814b'});
+const api = apiAdapter(BASE_URL, { 'X-Riot-Token': 'RGAPI-3b9e3001-1e3b-45ca-8378-181bf2dd9a66'});
 
 router.get('/lol/champion-rotations', requestAuthenticator, (req, res) => {
     let correctedPath = req.path.replace(PREFIX, "");

@@ -18,7 +18,10 @@ router.get('/gg/supportedgames', requestAuthenticator, (req, res) => {
 });
 
 router.get('/gg/lol/guides', requestAuthenticator, (req, res) => {
-    api.get(req.path + '?size=10&page=0').then(resp => {
+    let size = parseInt(req.query.size);
+    let page = parseInt(req.query.page);
+    let queryString = "?page=" + page + "&size=" + size;
+    api.get(req.path + queryString).then(resp => {
         res.send(resp.data);
     })
         .catch(error => {

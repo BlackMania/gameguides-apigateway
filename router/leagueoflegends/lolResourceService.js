@@ -17,7 +17,6 @@ router.get('/lol/img/champion/:name', requestAuthenticator, (req, res) => {
 router.get('/lol/img/champion/splash/:name', requestAuthenticator, (req, res) => {
     let correctedPath = req.path.replace(PREFIX + '/', "");
     let url = BASE_URL + correctedPath;
-    console.log(url);
     request(url).pipe(res);
 });
 

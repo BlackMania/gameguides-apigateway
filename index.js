@@ -19,6 +19,7 @@ app.runMiddleware('/lol/versions', {method: 'get'}, function (responseCode, body
 })
 
 
+
 app.locals.leagueApiVersion = '';
 
 console.log("GameGuides Simple Api Gateway");
