@@ -12,7 +12,7 @@ router.get('/gg/supportedgames', requestAuthenticator, (req, res) => {
         res.send(resp.data);
     })
         .catch(error => {
-            res.send("Something went wrong")
+            res.send("Something went wrong");
             console.log(error)
         })
 });
@@ -25,9 +25,19 @@ router.get('/gg/lol/guides', requestAuthenticator, (req, res) => {
         res.send(resp.data);
     })
         .catch(error => {
-            res.send("Something went wrong")
+            res.send("Something went wrong");
             console.log(error)
         })
 });
 
-module.exports = router
+router.get('/gg/lol/guide/:id', requestAuthenticator, (req, res) => {
+    api.get(req.path).then(resp => {
+        res.send(resp.data);
+    })
+        .catch(error => {
+            res.send("Something went wrong");
+            console.log(error)
+        })
+});
+
+module.exports = router;
