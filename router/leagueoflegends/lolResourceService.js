@@ -3,21 +3,25 @@ var router = express.Router();
 var requestAuthenticator = require('../../controllers/requestAuthenticator');
 var request = require('request');
 
+
+const apiAdapter = require('../apiAdapter');
+
 const BASE_URL = 'http://ddragon.leagueoflegends.com/cdn/';
+const api = apiAdapter(BASE_URL);
 
 const PREFIX = "/lol";
 
-router.get('/lol/img/champion/:name', requestAuthenticator, (req, res) => {
+router.get('/lol/data/en_US/champion/:champion', requestAuthenticator, (req, res) => {
     let correctedPath = req.path.replace(PREFIX, "");
-    let url = BASE_URL + req.app.locals.leagueApiVersion + correctedPath;
+    let url = req.app.locals.leagueApiVersion + correctedPath + ".json";
 
-    request(url).pipe(res);
+    api.get(url)
+        .then(resp => {
+            res.send(resp.data);
+        })
+        .catch(error => {
+            res.send("Something went wrong");
+            console.log(error.message)
+        })
 });
-
-router.get('/lol/img/champion/splash/:name', requestAuthenticator, (req, res) => {
-    let correctedPath = req.path.replace(PREFIX + '/', "");
-    let url = BASE_URL + correctedPath;
-    request(url).pipe(res);
-});
-
-module.exports = router
+module.exports = router;
