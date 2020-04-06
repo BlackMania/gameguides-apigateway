@@ -30,7 +30,7 @@ router.get('/gg/lol/guides', requestAuthenticator, (req, res) => {
         })
 });
 
-router.get('/gg/lol/guide/:id', requestAuthenticator, (req, res) => {
+router.get('/gg/lol/guides/:id', requestAuthenticator, (req, res) => {
     api.get(req.path).then(resp => {
         res.send(resp.data);
     })
