@@ -8,7 +8,7 @@ const BASE_URL = 'http://localhost:8081';
 const api = apiAdapter(BASE_URL, { 'Content-Type': 'application/json'});
 
 router.post('/gg/auth/login', requestAuthenticator, (req, res) => {
-    console.log(req);
+    console.log(req.body);
     api.post(req.path, req.body).then(resp => {
         res.send(resp.data);
     })
